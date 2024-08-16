@@ -1,0 +1,6 @@
+PesoT = prompt("Insira seu peso")
+AlturaT = prompt("Insira sua altura")
+Altura = parseFloat(AlturaT)
+Peso = parseFloat (PesoT)
+Resultado = Peso / (Altura * Altura)
+console.log("O seu IMC é:" + Resultado)
