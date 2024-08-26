@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-    temperaturat= prompt("Insira sua temperatura")
-    temperatura= parseFloat(temperaturat)
-
-    if (temperatura >=41) {
-        console.log("Hipertemia")
-    }
-
-    else if (temperatura >=)
-=======
 let temperaturat = prompt("Insira sua temperatura")
 let temperatura = parseFloat(temperaturat)
 
@@ -22,4 +12,4 @@ if (temperatura >= 41) {
 } else {
     console.log("Hipotermia")
 }
->>>>>>> ea99ea266ef967a6d410e5e5871022bff1d8d9d5
+
