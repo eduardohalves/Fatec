@@ -5,7 +5,7 @@ entrada = parseInt(entradat)
 entrada2 = parseInt(entradat2)
 entrada3 = parseInt(entradat3)
 
-maior
+let maior
 if (entrada > entrada2){
     maior = entrada
 }
