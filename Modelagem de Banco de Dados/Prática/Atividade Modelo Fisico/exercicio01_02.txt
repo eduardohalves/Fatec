@@ -1,0 +1,38 @@
+--Dropei as tabelas abaixo. Isso é uma boa prática para que caso a tabela já exista, 
+--não ter erro quando for executar o código
+drop table if exists endereco;
+drop table if exists bairro;
+drop table if exists cidade;
+
+CREATE TABLE if not exists cidade (
+	
+	idcidade INTEGER,
+	PRIMARY KEY (idcidade),
+	nome VARCHAR(40) NOT NULL,
+	uf CHAR(2) NOT NULL
+	
+);
+
+CREATE TABLE if not exists bairro (
+
+	idbairro INTEGER,
+	PRIMARY KEY (idbairro),
+	nome VARCHAR(20),
+	idcidade INTEGER NOT NULL,
+	FOREIGN KEY (idcidade)
+	REFERENCES cidade(idcidade)
+	
+);
+
+CREATE TABLE if not exists endereco (
+	
+	idendereco INTEGER,
+	PRIMARY KEY (idendereco),
+	logradouro VARCHAR(30),
+	numero INTEGER,
+	cep INTEGER,
+	idbairro INTEGER,
+	FOREIGN KEY (idbairro)
+	REFERENCES bairro(idbairro)
+	
+);

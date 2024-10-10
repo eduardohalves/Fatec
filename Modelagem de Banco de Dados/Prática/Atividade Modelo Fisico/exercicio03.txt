@@ -1,0 +1,12 @@
+drop table if exists tarefa;
+
+CREATE TABLE if not exists tarefa(
+
+    idtarefa INTEGER,
+    PRIMARY KEY (idtarefa),
+    nome VARCHAR(30) NOT NULL,
+    valor FLOAT,
+    idtarefa INTEGER,
+    FOREIGN KEY (idtarefapai)
+    REFERENCES tarefa(idtarefa)
+);

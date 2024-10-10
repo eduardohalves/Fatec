@@ -1,0 +1,29 @@
+drop table if exists veiculo;
+drop table if exists ocupa;
+drop table if exists vaga;
+
+CREATE TABLE if not exists veiculo (
+    placa CHAR(7),
+    PRIMARY KEY(placa),
+    marca VARCHAR (20),
+    modelo VARCHAR(20)
+);
+
+CREATE TABLE vaga (
+
+    nome VARCHAR(10),
+    PRIMARY KEY(nome)
+);
+
+ CREATE TABLE if not exists ocupa(
+
+    placa_veiculo CHAR(7),
+    nome_vaga VARCHAR(10),
+    valor FLOAT,
+    inicio TIMESTAMP,
+    fim TIMESTAMP,
+    FOREIGN KEY (placa_veiculo),
+    REFERENCES veiculo(placa),
+    FOREIGN KEY (nome_vaga)
+    REFERENCES vaga(nome)
+ );

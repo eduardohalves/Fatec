@@ -1,0 +1,13 @@
+{
+    "name": "aula5",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+
+    "scripts": {
+        "um": "node ./src/um"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
+}

@@ -1,0 +1,22 @@
+drop table if exists pessoa;
+drop table if exists imovel;
+
+CREATE TABLE if not exists pessoa (
+
+    idpessoa INTEGER,
+    PRIMARY KEY (idpessoa),
+    nome VARCHAR(40),
+);
+
+CREATE TABLE if not exists imovel (
+
+    idmovel INTEGER,
+    PRIMARY KEY (idmovel),
+    descricao VARCHAR(50),
+    idproprietario INTEGER,
+    idinquilino INTEGER,
+    FOREIGN KEY(idproprietario)
+    REFERENCES pessoa(idpessoa),
+    FOREIGN KEY (idinquilino)
+    REFERENCES pessoa(idpessoa)
+)c:\Users\Eduardo\Downloads\exercicio01_02.sql
