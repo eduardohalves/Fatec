@@ -1,20 +1,21 @@
-
 function Message() {
-    // Obtém a hora atual (0-23)
     const currentHour = new Date().getHours();
-
+    let hora;
+  
+    if (currentHour >= 6 && currentHour < 12) {
+      hora = 'dia';
+    } else if (currentHour < 18) {
+      hora = 'tarde';
+    } else {
+      hora = 'noite';
+    }
+  
     return (
-        <div>
-            {currentHour < 12  
-                ? "Bom dia!" 
-                : currentHour < 18 
-                ? "Boa tarde!" 
-                : "Boa noite!"}
-        </div>
+      <div>
+        {hora}!
+      </div>
     );
-}
-
-
+  }
 
 
 // export default function App() {
