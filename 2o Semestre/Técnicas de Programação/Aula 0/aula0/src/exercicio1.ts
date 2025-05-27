@@ -7,6 +7,12 @@
 // console.log(formatar("Ana"));
 // console.log(formatar("12"));
 
+// const mult = (a: number, b: number): number => {
+//     return a * b;
+//     };
+//     const div = (a: number, b: number): number => a / b;
+//     const pow = (a: number, b: number): number => { return a ** b };
+
 const formatar = (entrada:string):string =>  `<div>${entrada}</div>`
 
 // console.log(formatar("Ana"));

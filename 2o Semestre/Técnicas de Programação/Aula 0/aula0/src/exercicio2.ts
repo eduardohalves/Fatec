@@ -10,6 +10,24 @@
 // console.log(formatar(nomes[i]));
 // }
 
+// const w = [4, 2, 8, 5];
+// //O método forEach recebe como argumento uma função anônima
+// w.forEach(
+//  //Essa função anônima pode receber até 3 parâmetros que serão
+//  //fornecidos pelo forEach.
+//  //Essa função será invocada para cada elemento do array w
+//  function (item, indice, array) {
+//  console.log(indice + ':' + item + ' ' + array);
+//  }
+// );
+// w.forEach(
+//  //aqui foi passada uma arrow function com 2 parâmetros
+//  (item, indice) => console.log(indice + ':' + item)
+// );
+// w.forEach(
+//  //aqui foi passada uma arrow function com 1 parâmetro
+//  item => console.log(item)
+
 import formatar from "./exercicio1";
 const nomes = ["Ana", "Pedro", "Lucas", "Maria"];
 nomes.forEach((nome) => {

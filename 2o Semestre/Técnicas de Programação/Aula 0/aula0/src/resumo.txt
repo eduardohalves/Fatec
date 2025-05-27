@@ -1,0 +1,5 @@
+Os métodos forEach, map e reduce são comumente usados para operar sobre arrays, mas observe que eles são usados em
+situações distintas:
+• forEach não possui retorno, pois opera sobre cada elemento do array atual;
+• map retorna um novo array, onde cada elemento do array atual sofre a operação. Ele não altera o array atual;
+• reduce retorna um único valor. Ele não altera o array atual.
