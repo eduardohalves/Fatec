@@ -1,0 +1,8 @@
+Sobre o constructor é errado:
+
+Passando os parâmetros fora de ordem:
+const w = new Pessoa(21,"Maria");
+• Passando a quantidade incorreta de parâmetros:
+const r = new Pessoa();
+const s = new Pessoa("João");
+const t = new Pessoa("Lucas",25,"Souza");
