@@ -1,0 +1,187 @@
+Questao 1
+
+// Coleção: clientes
+db.clientes.insertMany([
+ { _id: 1, nome: "Marcos", idade: 25, cidade: "Fortaleza" },
+ { _id: 2, nome: "Julia", idade: 30, cidade: "São Paulo" },
+ { _id: 3, nome: "Lucas", idade: 19, cidade: "Recife" },
+ { _id: 4, nome: "Ana", idade: 27, cidade: "Fortaleza" }
+])
+
+// Coleção: produtos
+db.produtos.insertMany([
+ { _id: 101, nome: "Mouse Gamer", categoria: "Periféricos", preco: 250 },
+ { _id: 102, nome: "Teclado Mecânico", categoria: "Periféricos", preco: 400 },
+ { _id: 103, nome: "CS:GO Deluxe", categoria: "Jogos", preco: 120},
+ { _id: 104, nome: "Headset Pro", categoria: "Periféricos", preco: 350 },
+ { _id: 105, nome: "FIFA 25", categoria: "Jogos", preco: 300 }
+])
+
+// Coleção: vendas
+db.vendas.insertMany([
+ { clienteId: 1, produtoId: 101, quantidade: 1, data: "2024-05-01" },
+ { clienteId: 1, produtoId: 103, quantidade: 2, data: "2024-05-03" },
+ { clienteId: 2, produtoId: 102, quantidade: 1, data: "2024-05-02" },
+ { clienteId: 3, produtoId: 105, quantidade: 1, data: "2024-05-04" },
+ { clienteId: 4, produtoId: 104, quantidade: 2, data: "2024-05-05" }
+])
+
+Questao 2
+ 
+db.clientes.find ({
+	cidade:"Fortaleza"})
+ 
+Questao 3
+ 
+ 
+db.clientes.find(
+	{ $and:[
+		{cidade:"Fortaleza"},
+		{idade:25}
+	]
+	}
+)
+ 
+Questao 4
+ 
+db.produtos.find ({
+	categoria:"Periféricos"})
+ 
+Questao 5
+ 
+db.produtos.find ({
+	preco: {$gte:200, $lte:400}})
+ 
+Questao 6
+ 
+db.clientes.find({
+  $nor: [
+    { cidade: "Fortaleza" },
+    { idade: { $not: { $gte: 20 } } }
+  ]
+})
+ 
+Questao 7
+ 
+db.clientes.find({
+  clienteVip: { $exists: false },
+  idade: { $type: "number" }
+})
+ 
+Questao 8
+ 
+db.clientes.insertMany([
+  {_id:5, nome:"Jorge", idade:22, cidade:"Salvador"}])
+ 
+Questao 9
+ 
+db.clientes.updateOne (
+  {nome:"Marcos"},
+  { $set:{cidade:"Natal"} }
+)
+ 
+Questao 10
+ 
+db.clientes.updateOne({
+	nome: "Lucas"}, {$set:{status:"ativo"}, $inc: {idade: 1}})
+
+Questao 11
+
+db.clientes.replaceOne(
+  { nome: "Julia" },
+  { nome: "Julia", idade: 31, cidade: "Rio de Janeiro", clienteVip: true }
+)
+
+Questao 12 
+
+db.produtos.updateMany(
+  {},
+  { $rename: { "preco": "valor" } },
+    { $unset: { "categoria": "" } }
+  )
+
+Questao 13
+
+  db.produtos.deleteOne(
+	{ nome: "FIFA 25" }
+	)
+
+Questao 14
+
+db.clientes.find(
+  { $or: [ { cidade: "São Paulo" }, { cidade: "Recife" } ] }
+)
+
+Questao 15
+
+db.vendas.aggregate([
+  {
+    $lookup: {
+      from: "produtos",
+      localField: "produtoId",
+      foreignField: "_id",
+      as: "produto"
+    }
+  }
+])
+
+Questao 16
+
+db.vendas.aggregate([
+  {
+    $lookup: {
+      from: "produtos",
+      localField: "produtoId",
+      foreignField: "_id",
+      as: "produto"
+    }
+  },
+  {
+    $group: {
+      _id: "$produto.categoria",
+      totalVendido: { $sum: "$quantidade" }
+    }
+  },
+  { $project: { categoria: "$_id", totalVendido: 1, _id: 0 } }
+])
+
+Questao 17
+
+db.vendas.aggregate([
+  {
+    $lookup: {
+      from: "produtos",
+      localField: "produtoId",
+      foreignField: "_id",
+      as: "produto"
+    }
+  },
+  {
+    $group: {
+      _id: { $arrayElemAt: ["$produto.categoria", 0] },
+      vendas: { $push: "$$ROOT" },                      
+      totalVendido: { $sum: "$quantidade" }
+    }
+  },
+  {
+    $project: {
+      categoria: "$_id",
+      vendas: 1,
+      totalVendido: 1,
+      _id: 0
+    }
+  }
+])
+
+Questao 18
+
+db.produtos.find()
+  .sort({ valor: -1 })
+  .limit(2)
+
+Questao 19
+
+db.produtos.find()
+  .sort({ valor: -1 })
+  .skip(2)
+  .limit(3)
