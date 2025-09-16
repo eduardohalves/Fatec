@@ -1,0 +1,68 @@
+Questao 2
+
+db.torneios.insertOne({
+  nome: "Copa CS:GO",
+  premio: 5000,
+  jogadores: [
+    { nome: "Ana", idade: 22, pais: "Brasil" },
+    { nome: "Lucas", idade: 25, pais: "Argentina" }
+  ]
+})
+
+Questao 3
+
+db.jogadores.insertMany([
+  { _id: 1, nome: "Ana", idade: 22, pais: "Brasil" },
+  { _id: 2, nome: "Lucas", idade: 25, pais: "Argentina" }
+])
+
+db.torneios.insertOne({
+  nome: "Copa CS:GO",
+  premio: 5000,
+  jogadores: [1, 2] // IDs
+})
+
+Questao 4 
+
+Embedding:
+
+Melhor quando os dados têm relação 1:1 ou 1:N pequena, e quase sempre serão acessados juntos (ex: jogadores fixos dentro de um torneio único).
+
+Referencing:
+
+Melhor quando os dados têm relação N:N, ou quando precisam ser reutilizados em várias coleções (ex: um jogador pode participar de vários torneios diferentes).
+
+Questaõ 5
+
+db.torneios.find({ premio: { $gte: 4000 } })
+
+Questao 6 
+
+db.jogadores.find({
+  $and: [
+    { pais: "Brasil" },
+    { idade: { $gt: 21 } }
+  ]
+})
+
+Questao 7
+
+db.jogadores.find({ nick: { $exists: true } })
+
+Questao 8
+
+db.torneios.updateOne(
+  { nome: "Copa CS:GO" },
+  { $set: { status: "ativo" } }
+)
+
+Questao 9 
+
+db.jogadores.deleteOne({ nome: "Pedro" })
+
+Questao 10 
+
+db.torneios.find()
+  .sort({ premio: -1 })
+  .skip(1)
+  .limit(1)
