@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastro de Discos</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Cadastro de Vinis e CDs</h1>
+
+      <form id="form-disco">
+        <input type="hidden" id="id" />
+        <input type="text" id="titulo" placeholder="Título" required />
+        <input type="text" id="artista" placeholder="Artista" required />
+        <input type="number" id="ano" placeholder="Ano" required />
+        <input type="text" id="genero" placeholder="Gênero" required />
+
+        <select id="formato" required>
+          <option value="">Selecione o formato</option>
+          <option value="Vinil">Vinil</option>
+          <option value="CD">CD</option>
+        </select>
+
+        <input type="number" id="preco" placeholder="Preço (R$)" required />
+        <button type="submit">Salvar</button>
+      </form>
+
+      <h2>📀 Discos Cadastrados</h2>
+      <table id="tabela-discos">
+        <thead>
+          <tr>
+            <th>Título</th>
+            <th>Artista</th>
+            <th>Ano</th>
+            <th>Gênero</th>
+            <th>Formato</th>
+            <th>Preço</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
