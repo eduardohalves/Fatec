@@ -1,0 +1,29 @@
+use admin;
+
+db.createUser({
+  user: "root",
+  pwd: "123456",
+  roles: [{ role: "root", db: "admin" }]
+});
+
+db.createUser({
+  user: "devAluno",
+  pwd: "123",
+  roles: [{ role: "readWrite", db: "meuBanco" }]
+});
+
+"C:\Users\Matsuke\AppData\Local\Programs\mongosh\mongosh.exe" -u devAluno -p 123 --authenticationDatabase meuBanco
+
+db.leituras.find().pretty();
+
+"C:\Program Files\MongoDB\Server\6.0\bin\mongoexport.exe" --uri="mongodb://devAluno:123@localhost:27017/meuBanco" --collection=leituras --out=leituras.json --jsonArray
+
+use meuBanco;
+
+db.leituras.drop();
+
+"C:\Program Files\MongoDB\Server\6.0\bin\mongoimport.exe" --uri="mongodb://devAluno:123@localhost:27017/meuBanco" --collection=leituras --file=leituras.json --jsonArray
+
+db.leituras.find().pretty();
+
+db.setProfilingLevel(2);
