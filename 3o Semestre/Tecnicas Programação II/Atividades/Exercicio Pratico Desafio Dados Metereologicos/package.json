@@ -1,0 +1,12 @@
+{
+  "name": "desafio-meteorologia",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "ts-node ./src/index.ts"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.3",
+    "@types/node": "^20.11.30"
+  }
+}

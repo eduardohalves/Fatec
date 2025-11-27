@@ -1,0 +1,32 @@
+{
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  },
+  "name": "coesao-e-acoplamento",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "acorn": "^8.15.0",
+    "acorn-walk": "^8.3.4",
+    "arg": "^4.1.3",
+    "create-require": "^1.1.1",
+    "diff": "^4.0.2",
+    "make-error": "^1.3.6",
+    "undici-types": "^7.16.0",
+    "v8-compile-cache-lib": "^3.0.1",
+    "yn": "^3.1.1"
+  },
+  "scripts": {
+    "start": "ts-node ./src/index",
+    "ex01": "ts-node ./src/ex01",
+    "ex02": "ts-node ./src/ex02",
+    "ex03": "ts-node ./src/ex03",
+    "ex04": "ts-node ./src/ex04",
+    "ex05": "ts-node ./src/ex05"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
