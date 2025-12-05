@@ -1,0 +1,116 @@
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Sistema de Ordens de Serviço - Frontend</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="header">
+<h1>Sistema de Ordens de Serviço</h1>
+</header>
+
+
+<main class="container">
+<section class="card form-card">
+<h2>Cadastrar / Editar Ordem</h2>
+<form id="formOrdem">
+<input type="hidden" id="ordemId" />
+
+
+<label for="titulo">Título</label>
+<input id="titulo" name="titulo" required />
+
+
+<label for="descricao">Descrição</label>
+<textarea id="descricao" name="descricao" rows="3" required></textarea>
+
+
+<label for="status">Status</label>
+<select id="status" name="status" required>
+<option value="aberta">aberta</option>
+<option value="em andamento">em andamento</option>
+<option value="concluída">concluída</option>
+</select>
+
+
+<label for="prioridade">Prioridade</label>
+<select id="prioridade" name="prioridade" required>
+<option value="baixa">baixa</option>
+<option value="média">média</option>
+<option value="alta">alta</option>
+</select>
+
+
+<label for="responsavel">Responsável</label>
+<input id="responsavel" name="responsavel" />
+
+
+<label for="setorSolicitante">Setor Solicitação</label>
+<input id="setorSolicitante" name="setorSolicitante" required />
+
+
+<label for="prazoEstimado">Prazo Estimado</label>
+<input id="prazoEstimado" name="prazoEstimado" type="date" />
+
+
+<label for="valorServico">Valor do Serviço (R$)</label>
+<input id="valorServico" name="valorServico" type="number" step="0.01" required />
+
+
+<div class="actions">
+<button type="submit" id="btnSalvar">Salvar</button>
+<button type="button" id="btnLimpar" class="secondary">Limpar</button>
+</div>
+</form>
+</section>
+
+
+<section class="card list-card">
+<h2>Pesquisar e Filtrar</h2>
+
+
+<div class="filters">
+<input id="filtroTitulo" placeholder="Pesquisar por título" />
+
+
+<select id="filtroStatus">
+<option value="">--Status--</option>
+<option value="aberta">aberta</option>
+<option value="em andamento">em andamento</option>
+<option value="concluída">concluída</option>
+</select>
+
+
+<select id="filtroPrioridade">
+<option value="">--Prioridade--</option>
+<option value="baixa">baixa</option>
+<option value="média">média</option>
+<option value="alta">alta</option>
+</select>
+
+
+<input id="filtroSetor" placeholder="Setor" />
+
+
+<div class="filter-actions">
+<button id="btnFiltrar">Filtrar</button>
+<button id="btnResetFiltros" class="secondary">Resetar</button>
+</div>
+</div>
+
+
+<h3>Lista de Ordens</h3>
+<div id="listaOrdens" class="lista"></div>
+</section>
+</main>
+
+
+<footer class="footer">
+<p>Frontend de teste — conecta com o backend em <code>/ordens</code></p>
+</footer>
+
+
+<script type="module" src="app.js"></script>
+</body>
+</html>

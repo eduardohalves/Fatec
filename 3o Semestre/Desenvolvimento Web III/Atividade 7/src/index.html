@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Gerenciador de Eventos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 700px;
+            margin: 20px auto;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px;
+            width: 100%;
+            cursor: pointer;
+            background: #3498db;
+            border: none;
+            color: white;
+            font-size: 16px;
+        }
+
+        .evento {
+            background: #f2f2f2;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Gerenciador de Eventos</h1>
+
+    <h2>Cadastrar Evento</h2>
+
+    <input id="titulo" placeholder="Título" />
+    <textarea id="descricao" placeholder="Descrição (opcional)"></textarea>
+    <input id="data" type="date" />
+    <input id="local" placeholder="Local" />
+    <input id="valor" type="number" step="0.01" placeholder="Valor" />
+
+    <button onclick="criarEvento()">Cadastrar</button>
+
+    <hr>
+
+    <h2>Eventos Cadastrados</h2>
+    <div id="listaEventos"></div>
+
+    <script>
+        const API_URL = "http://localhost:3000/eventos";
+
+        async function criarEvento() {
+            const evento = {
+                titulo: document.getElementById("titulo").value,
+                descricao: document.getElementById("descricao").value,
+                data: document.getElementById("data").value,
+                local: document.getElementById("local").value,
+                valor: parseFloat(document.getElementById("valor").value)
+            };
+
+            console.log("Enviando:", evento);
+
+            try {
+                const response = await fetch(API_URL, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(evento)
+                });
+
+                const data = await response.json();
+                console.log("Resposta:", data);
+
+                alert(data.mensagem || data.erro);
+
+                listarEventos();
+            } catch (error) {
+                console.error("ERRO FETCH:", error);
+                alert("Erro ao enviar requisição (verifique o backend)");
+            }
+        }
+
+        async function listarEventos() {
+            const res = await fetch(API_URL);
+            const eventos = await res.json();
+
+            const lista = document.getElementById("listaEventos");
+            lista.innerHTML = "";
+
+            eventos.forEach(e => {
+                lista.innerHTML += `
+          <div class="evento">
+            <strong>${e.titulo}</strong><br>
+            <small>${new Date(e.data).toLocaleDateString()}</small><br>
+            Local: ${e.local}<br>
+            Valor: R$ ${e.valor}<br>
+            ${e.descricao ? `<p>${e.descricao}</p>` : ""}
+          </div>
+        `;
+            });
+        }
+
+        listarEventos();
+    </script>
+
+</body>
+
+</html>
